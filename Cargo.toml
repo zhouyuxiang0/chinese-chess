@@ -1,0 +1,24 @@
+[package]
+name = "chinese-chess"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+yew = "0.19"
+[dependencies.stylist]
+version = "0.10.1"
+features = [
+    "yew_integration",
+    "yew_use_media_query",
+]
+[dependencies.web-sys]
+version = "0.3"
+features = [
+    "console",
+    "Document",
+    "HtmlElement",
+    "MouseEvent",
+    "DomRect",
+]
