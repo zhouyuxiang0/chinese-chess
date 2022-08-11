@@ -1,5 +1,6 @@
 use stylist::{yew::styled_component, Style};
 use yew::prelude::{Properties, *};
+use crate::chess_piece::ChessPiece;
 
 #[derive(Properties, Clone, PartialEq)]
 pub struct PlaceHolderProp {
@@ -13,7 +14,19 @@ pub fn chess_placeholder(props: &PlaceHolderProp) -> html {
     let size = props.clone().size;
     let style = make_style(props.x, props.y, size);
     html! {
-        <div class={style}></div>
+        <div class={style}>
+        // {"x"}{props.x}{"y"}{props.y}
+        <ChessPiece name="车" group=true x=1 y=1 />
+            // {
+            //     if props.x == 1 && props.y == 1 {
+            //         html!{
+            //             <ChessPiece name="车" group=true x=1 y=1 />
+            //         }
+            //     } else {
+            //         html!{}
+            //     }
+            // }
+        </div>
     }
 }
 
@@ -48,9 +61,6 @@ fn match_content(x: i32, y: i32) -> &'static str {
 fn make_style(x: i32, y: i32, size: i32) -> Style {
     let mut base_style = format!(
         "
-        :hover {{
-            background-color: red;
-        }}
         height:{}px;
         width:{}px;
         position: relative;",

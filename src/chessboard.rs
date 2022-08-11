@@ -34,7 +34,9 @@ pub fn chessboard(prop: &ChessboardProp) -> Html {
             ", x_size, y_size, placeholder_size)}>
             {
                 chess_map.iter().map(|(x, y)| {
-                    html!{<ChessPlaceHolder size={placeholder_size} x={*x} y={*y} />}
+                    html!{
+                        <ChessPlaceHolder size={placeholder_size} x={*x} y={*y} />
+                    }
                 }).collect::<Html>()
             }
         </div>
