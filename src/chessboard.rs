@@ -1,6 +1,5 @@
 use crate::chessplaceholder::ChessPlaceHolder;
 use stylist::yew::styled_component;
-use web_sys::console;
 use yew::prelude::*;
 
 #[derive(Properties, Clone, PartialEq)]
@@ -13,12 +12,11 @@ pub fn chessboard(prop: &ChessboardProp) -> Html {
     let x = use_state(|| 9);
     let y = use_state(|| 10);
     let mut chess_map = vec![];
-    for x in 1..=*x {
-        for y in 1..=*y {
+    for y in 1..=*y {
+        for x in 1..=*x {
             chess_map.push((x, y));
         }
     }
-    println!("{:?}", chess_map);
     let placeholder_size = prop.clone().placeholder_size;
     let (x_size, y_size) = (*x.clone() * placeholder_size, *y.clone() * placeholder_size);
     html! {

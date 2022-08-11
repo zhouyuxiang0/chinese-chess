@@ -1,8 +1,8 @@
 use stylist::yew::{styled_component, use_media_query, Global};
 use yew::prelude::*;
+mod chess_piece;
 mod chessboard;
 mod chessplaceholder;
-mod chess_gird;
 use chessboard::Chessboard;
 
 #[styled_component(App)]
