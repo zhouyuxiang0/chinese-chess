@@ -16,13 +16,11 @@ pub fn chess_placeholder(props: &PlaceHolderProp) -> html {
     html! {
         <div class={style}>
         // {"x"}{props.x}{"y"}{props.y}
-        <ChessPiece name="车" group=true x=1 y=1 />
             // {
-            //     if props.x == 1 && props.y == 1 {
-            //         html!{
-            //             <ChessPiece name="车" group=true x=1 y=1 />
-            //         }
-            //     } else {
+                if props.x == 1 && props.y == 1 {
+                    <ChessPiece name="车" group=true x=1 y=1 />
+                } 
+            // else {
             //         html!{}
             //     }
             // }

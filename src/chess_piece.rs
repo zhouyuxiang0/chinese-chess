@@ -13,17 +13,19 @@ pub struct ChessPieceProps {
 #[styled_component(ChessPiece)]
 pub fn chess_piece(props: &ChessPieceProps) -> Html {
     let style = Style::new(
-        "{
-        width: 70px;
-        height: 70px;
+        "
+        width: 45px;
+        height: 45px;
         border-radius: 50%;
+        line-height: 45px;
+        text-align: center;
         :hover {
             background-color: green;
         }
-    }",
+    ",
     )
     .expect("style出错");
     html! {
-        <div class={style}>{"---------"}</div>
+        <div class={style}>{props.name}</div>
     }
 }

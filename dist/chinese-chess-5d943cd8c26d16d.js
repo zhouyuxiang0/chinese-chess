@@ -554,11 +554,11 @@ function getImports() {
     imports.wbg.__wbindgen_throw = function(arg0, arg1) {
         throw new Error(getStringFromWasm0(arg0, arg1));
     };
-    imports.wbg.__wbindgen_closure_wrapper3221 = function(arg0, arg1, arg2) {
+    imports.wbg.__wbindgen_closure_wrapper3226 = function(arg0, arg1, arg2) {
         const ret = makeMutClosure(arg0, arg1, 152, __wbg_adapter_20);
         return addHeapObject(ret);
     };
-    imports.wbg.__wbindgen_closure_wrapper3721 = function(arg0, arg1, arg2) {
+    imports.wbg.__wbindgen_closure_wrapper3726 = function(arg0, arg1, arg2) {
         const ret = makeClosure(arg0, arg1, 319, __wbg_adapter_23);
         return addHeapObject(ret);
     };
@@ -595,7 +595,7 @@ function initSync(bytes) {
 
 async function init(input) {
     if (typeof input === 'undefined') {
-        input = new URL('chinese-chess-14e599e207b563c_bg.wasm', import.meta.url);
+        input = new URL('chinese-chess-5d943cd8c26d16d_bg.wasm', import.meta.url);
     }
     const imports = getImports();
 
