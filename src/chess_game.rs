@@ -123,82 +123,82 @@ impl ChessGame {
             Piece {
                 location: (5, 10),
                 name: "帅",
-                group: Group::Black,
+                group: Group::Red,
             },
             Piece {
                 location: (1, 10),
                 name: "车",
-                group: Group::Black,
+                group: Group::Red,
             },
             Piece {
                 location: (9, 10),
                 name: "车",
-                group: Group::Black,
+                group: Group::Red,
             },
             Piece {
                 location: (2, 10),
                 name: "马",
-                group: Group::Black,
+                group: Group::Red,
             },
             Piece {
                 location: (8, 10),
                 name: "马",
-                group: Group::Black,
+                group: Group::Red,
             },
             Piece {
                 location: (2, 8),
                 name: "炮",
-                group: Group::Black,
+                group: Group::Red,
             },
             Piece {
                 location: (8, 8),
                 name: "炮",
-                group: Group::Black,
+                group: Group::Red,
             },
             Piece {
                 location: (3, 10),
                 name: "相",
-                group: Group::Black,
+                group: Group::Red,
             },
             Piece {
                 location: (7, 10),
                 name: "相",
-                group: Group::Black,
+                group: Group::Red,
             },
             Piece {
                 location: (4, 10),
                 name: "仕",
-                group: Group::Black,
+                group: Group::Red,
             },
             Piece {
                 location: (6, 10),
                 name: "仕",
-                group: Group::Black,
+                group: Group::Red,
             },
             Piece {
                 location: (1, 7),
                 name: "兵",
-                group: Group::Black,
+                group: Group::Red,
             },
             Piece {
                 location: (3, 7),
                 name: "兵",
-                group: Group::Black,
+                group: Group::Red,
             },
             Piece {
                 location: (5, 7),
                 name: "兵",
-                group: Group::Black,
+                group: Group::Red,
             },
             Piece {
                 location: (7, 7),
                 name: "兵",
-                group: Group::Black,
+                group: Group::Red,
             },
             Piece {
                 location: (9, 7),
                 name: "兵",
-                group: Group::Black,
+                group: Group::Red,
             },
         ];
         pieces
