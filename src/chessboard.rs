@@ -1,14 +1,11 @@
 use crate::chessplaceholder::ChessPlaceHolder;
-use stylist::yew::styled_component;
+use stylist::yew::{styled_component, use_media_query};
 use yew::prelude::*;
 
-#[derive(Properties, Clone, PartialEq)]
-pub struct ChessboardProp {
-    pub placeholder_size: i32,
-}
-
 #[styled_component(Chessboard)]
-pub fn chessboard(prop: &ChessboardProp) -> Html {
+pub fn chessboard() -> Html {
+    let is_small = use_media_query("(max-width: 720px)");
+    let placeholder_size = if is_small { 50 } else { 70 };
     let x = use_state(|| 9);
     let y = use_state(|| 10);
     let mut chess_map = vec![];
@@ -17,7 +14,6 @@ pub fn chessboard(prop: &ChessboardProp) -> Html {
             chess_map.push((x, y));
         }
     }
-    let placeholder_size = prop.clone().placeholder_size;
     let (x_size, y_size) = (*x.clone() * placeholder_size, *y.clone() * placeholder_size);
     html! {
         <div class={css!("

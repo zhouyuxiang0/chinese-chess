@@ -1,22 +1,44 @@
-use stylist::yew::{styled_component, use_media_query, Global};
+use stylist::yew::{styled_component, Global};
 use yew::prelude::*;
+mod chess_game;
 mod chess_piece;
 mod chessboard;
 mod chessplaceholder;
 use chessboard::Chessboard;
+use yew_router::prelude::*;
+
+#[derive(Clone, Routable, PartialEq)]
+enum Route {
+    #[at("/")]
+    Home,
+}
+
+fn switch(routes: &Route) -> Html {
+    match routes {
+        Route::Home => {
+            html! {
+                <Chessboard />
+            }
+        }
+    }
+}
 
 #[styled_component(App)]
 pub fn app() -> Html {
-    let is_small = use_media_query("(max-width: 720px)");
-    let placeholder_size = if is_small { 50 } else { 70 };
     html! {
-        <>
+        <BrowserRouter>
             <Global css="font-family:楷体;" />
-            <Chessboard placeholder_size={placeholder_size} />
-        </>
+            <nav></nav>
+            <main>
+                <Switch<Route> render={Switch::render(switch)} />
+            </main>
+            <footer>
+            </footer>
+        </BrowserRouter>
     }
 }
 
 fn main() {
+    wasm_logger::init(wasm_logger::Config::new(log::Level::Trace));
     yew::start_app::<App>();
 }

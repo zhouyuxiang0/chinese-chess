@@ -1,6 +1,6 @@
+use crate::{chess_game::Group, chess_piece::ChessPiece};
 use stylist::{yew::styled_component, Style};
 use yew::prelude::{Properties, *};
-use crate::chess_piece::ChessPiece;
 
 #[derive(Properties, Clone, PartialEq)]
 pub struct PlaceHolderProp {
@@ -18,8 +18,14 @@ pub fn chess_placeholder(props: &PlaceHolderProp) -> html {
         // {"x"}{props.x}{"y"}{props.y}
             // {
                 if props.x == 1 && props.y == 1 {
-                    <ChessPiece name="车" group=true x=1 y=1 />
-                } 
+                    <ChessPiece name="车" group={Group::Red} x=1 y=1/>
+                }
+                if props.x == 2 && props.y == 1 {
+                    <ChessPiece name="马" group={Group::Red} x=1 y=1/>
+                }
+                if props.x == 2 && props.y == 3 {
+                    <ChessPiece name="炮" group={Group::Red} x=1 y=1/>
+                }
             // else {
             //         html!{}
             //     }
@@ -61,7 +67,10 @@ fn make_style(x: i32, y: i32, size: i32) -> Style {
         "
         height:{}px;
         width:{}px;
-        position: relative;",
+        position: relative;
+        display:flex;
+        align-items:center;
+        justify-content:center;",
         size, size
     );
     if has_after(x) {

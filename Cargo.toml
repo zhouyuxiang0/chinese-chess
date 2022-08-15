@@ -7,6 +7,9 @@ edition = "2021"
 
 [dependencies]
 yew = "0.19"
+yew-router = "0.16"
+wasm-logger = "0.2"
+log = "0.4"
 [dependencies.stylist]
 version = "0.10.1"
 features = [
