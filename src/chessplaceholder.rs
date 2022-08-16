@@ -1,4 +1,7 @@
-use crate::{chess_game::Group, chess_piece::ChessPiece};
+use crate::{
+    chess_game::{ChessGame, Group},
+    chess_piece::ChessPiece,
+};
 use stylist::{yew::styled_component, Style};
 use yew::prelude::{Properties, *};
 
@@ -11,25 +14,31 @@ pub struct PlaceHolderProp {
 
 #[styled_component(ChessPlaceHolder)]
 pub fn chess_placeholder(props: &PlaceHolderProp) -> html {
+    let chess_game = ChessGame::get();
     let size = props.clone().size;
     let style = make_style(props.x, props.y, size);
+    let piece = chess_game
+        .pieces
+        .iter()
+        .find(|piece| piece.location.0 == props.x && piece.location.1 == props.y);
+    // let onclick = {
+    //     Callback::from(move |_| {
+    //         //
+    //     })
+    // };
     html! {
         <div class={style}>
-        // {"x"}{props.x}{"y"}{props.y}
-            // {
-                if props.x == 1 && props.y == 1 {
-                    <ChessPiece name="车" group={Group::Red} x=1 y=1/>
+            {
+                match piece {
+                    Some(p) => {
+                        html! {
+                           <ChessPiece piece={*p}/>
+                        }
+                    }
+                    None => html! {
+                    },
                 }
-                if props.x == 2 && props.y == 1 {
-                    <ChessPiece name="马" group={Group::Red} x=1 y=1/>
-                }
-                if props.x == 2 && props.y == 3 {
-                    <ChessPiece name="炮" group={Group::Red} x=1 y=1/>
-                }
-            // else {
-            //         html!{}
-            //     }
-            // }
+            }
         </div>
     }
 }

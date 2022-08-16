@@ -3,18 +3,21 @@ use yew::html;
 use yew::prelude::*;
 
 use crate::chess_game::Group;
+use crate::chess_game::Piece;
 
 #[derive(Properties, Clone, PartialEq)]
 pub struct ChessPieceProps {
-    pub name: &'static str,
-    pub group: Group,
-    pub x: i32,
-    pub y: i32,
+    pub piece: Piece,
 }
 
 #[styled_component(ChessPiece)]
 pub fn chess_piece(props: &ChessPieceProps) -> Html {
-    let style = Style::new(
+    let font_color = if props.piece.group == Group::Black {
+        "black"
+    } else {
+        "red"
+    };
+    let style = Style::new(format!(
         "
         width: 70%;
         height: 70%;
@@ -22,16 +25,23 @@ pub fn chess_piece(props: &ChessPieceProps) -> Html {
         display:flex;
         align-items:center;
         justify-content:center;
-        background-color: brown;
+        background-color: #e09a59;
         font-size: 32px;
+        color: {};
         z-index:50;
-        :hover {
+        :hover {{
             background-color: green;
-        }
+        }}
     ",
-    )
+        font_color
+    ))
     .expect("style出错");
+    let name = use_state(|| props.piece.name);
+    let onclick = {
+        let name = name.clone();
+        Callback::from(move |_| name.set("value"))
+    };
     html! {
-        <div class={style}>{props.name}</div>
+        <div class={style} {onclick}>{*name}</div>
     }
 }

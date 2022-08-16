@@ -31,6 +31,7 @@ name = "chinese-chess"
 version = "0.1.0"
 dependencies = [
  "log",
+ "once_cell",
  "stylist",
  "wasm-logger",
  "web-sys",
