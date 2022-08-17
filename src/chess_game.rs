@@ -5,6 +5,8 @@ use yew::prelude::*;
 pub struct ChessGame {
     pub chess_map: Vec<(i32, i32)>,
     pub pieces: Vec<Piece>,
+    pub selected: Option<Piece>,
+    pub current_round: Group,
 }
 
 #[derive(Clone, PartialEq, Copy)]
@@ -20,22 +22,33 @@ pub struct Piece {
     pub group: Group,
 }
 
+impl Piece {
+    pub fn move_to(&mut self) -> &Self {
+        self.location = (3, 3);
+        self
+    }
+}
+
 static mut CHESS_GAME: ChessGame = ChessGame {
     chess_map: vec![],
     pieces: vec![],
+    selected: Option::None,
+    current_round: Group::Red,
 };
 static INIT: Once = Once::new();
 
 impl ChessGame {
-    pub fn get() -> &'static ChessGame {
+    pub fn get() -> &'static mut ChessGame {
         unsafe {
             INIT.call_once(|| {
                 CHESS_GAME = ChessGame {
                     chess_map: ChessGame::init_map(),
                     pieces: ChessGame::init_piece_info(),
+                    selected: Option::None,
+                    current_round: Group::Red,
                 };
             });
-            &CHESS_GAME
+            &mut CHESS_GAME
         }
     }
 

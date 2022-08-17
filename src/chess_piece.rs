@@ -36,12 +36,7 @@ pub fn chess_piece(props: &ChessPieceProps) -> Html {
         font_color
     ))
     .expect("style出错");
-    let name = use_state(|| props.piece.name);
-    let onclick = {
-        let name = name.clone();
-        Callback::from(move |_| name.set("value"))
-    };
     html! {
-        <div class={style} {onclick}>{*name}</div>
+        <div class={style}>{props.piece.name}</div>
     }
 }

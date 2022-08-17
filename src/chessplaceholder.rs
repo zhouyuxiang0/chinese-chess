@@ -1,5 +1,5 @@
 use crate::{
-    chess_game::{ChessGame, Group},
+    chess_game::{ChessGame, Group, Piece},
     chess_piece::ChessPiece,
 };
 use stylist::{yew::styled_component, Style};
@@ -14,18 +14,48 @@ pub struct PlaceHolderProp {
 
 #[styled_component(ChessPlaceHolder)]
 pub fn chess_placeholder(props: &PlaceHolderProp) -> html {
-    let chess_game = ChessGame::get();
+    let chess_game = ChessGame::get().to_owned();
     let size = props.clone().size;
     let style = make_style(props.x, props.y, size);
-    let piece = chess_game
+    let game_state = use_state(|| chess_game);
+    let piece = game_state
         .pieces
         .iter()
         .find(|piece| piece.location.0 == props.x && piece.location.1 == props.y);
-    // let onclick = {
-    //     Callback::from(move |_| {
-    //         //
-    //     })
-    // };
+    let onclick: Callback<_> = {
+        let pieces = game_state.pieces.clone();
+        let game = game_state.clone();
+        match piece {
+            Some(p) => Callback::from(move |_: MouseEvent| {
+                let pieces: Vec<Piece> = pieces
+                    .iter()
+                    .map(|&p| {
+                        if p.location == p.location {
+                            Piece {
+                                location: (p.location.0 + 1, p.location.1 + 1),
+                                name: p.name,
+                                group: p.group,
+                            }
+                        } else {
+                            p
+                        }
+                    })
+                    .collect();
+                let n = ChessGame {
+                    selected: Option::None,
+                    chess_map: game.chess_map.clone(),
+                    pieces,
+                    current_round: if game.current_round == Group::Red {
+                        Group::Black
+                    } else {
+                        Group::Red
+                    },
+                };
+                game.set(n);
+            }),
+            None => Callback::from(|_| {}),
+        }
+    };
     html! {
         <div class={style}>
             {
