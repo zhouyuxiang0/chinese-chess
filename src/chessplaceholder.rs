@@ -10,66 +10,44 @@ pub struct PlaceHolderProp {
     pub size: i32,
     pub x: i32,
     pub y: i32,
+    pub piece: Option<Piece>,
 }
 
 #[styled_component(ChessPlaceHolder)]
 pub fn chess_placeholder(props: &PlaceHolderProp) -> html {
-    let chess_game = ChessGame::get().to_owned();
     let size = props.clone().size;
     let style = make_style(props.x, props.y, size);
-    let game_state = use_state(|| chess_game);
-    let piece = game_state
-        .pieces
-        .iter()
-        .find(|piece| piece.location.0 == props.x && piece.location.1 == props.y);
-    let onclick: Callback<_> = {
-        let pieces = game_state.pieces.clone();
-        let game = game_state.clone();
-        match piece {
-            Some(p) => Callback::from(move |_: MouseEvent| {
-                let pieces: Vec<Piece> = pieces
-                    .iter()
-                    .map(|&p| {
-                        if p.location == p.location {
-                            Piece {
-                                location: (p.location.0 + 1, p.location.1 + 1),
-                                name: p.name,
-                                group: p.group,
-                            }
-                        } else {
-                            p
-                        }
-                    })
-                    .collect();
-                let n = ChessGame {
-                    selected: Option::None,
-                    chess_map: game.chess_map.clone(),
-                    pieces,
-                    current_round: if game.current_round == Group::Red {
-                        Group::Black
-                    } else {
-                        Group::Red
-                    },
-                };
-                game.set(n);
-            }),
-            None => Callback::from(|_| {}),
-        }
-    };
-    html! {
-        <div class={style}>
-            {
-                match piece {
-                    Some(p) => {
-                        html! {
-                           <ChessPiece piece={*p}/>
-                        }
-                    }
-                    None => html! {
-                    },
+    let piece = use_state(|| props.piece);
+    let onclick = {
+        let piece = piece.clone();
+        Callback::from(move |e: MouseEvent| {
+            log::log!(log::Level::Debug, "{:?}", e);
+            match *piece {
+                Some(p) => piece.set(Option::Some(Piece {
+                    location: (p.location.0 + 1, p.location.1 + 1),
+                    ..p
+                })),
+                None => {
+                    //
                 }
+            };
+            // let Some(p) = piece;
+        })
+    };
+    match *piece {
+        Some(piece) => {
+            html! {
+                <div class={style} {onclick}>
+                    <ChessPiece piece={piece} />
+                </div>
             }
-        </div>
+        }
+        None => {
+            html! {
+                <div class={style} {onclick}>
+                </div>
+            }
+        }
     }
 }
 

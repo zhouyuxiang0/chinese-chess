@@ -17,6 +17,7 @@ pub enum Group {
 
 #[derive(Clone, PartialEq, Copy)]
 pub struct Piece {
+    pub id: usize,
     pub location: (i32, i32),
     pub name: &'static str,
     pub group: Group,
@@ -65,162 +66,194 @@ impl ChessGame {
     fn init_piece_info() -> Vec<Piece> {
         let pieces = vec![
             Piece {
+                id: 1,
                 location: (5, 1),
                 name: "将",
                 group: Group::Black,
             },
             Piece {
+                id: 2,
                 location: (1, 1),
                 name: "车",
                 group: Group::Black,
             },
             Piece {
+                id: 3,
                 location: (9, 1),
                 name: "车",
                 group: Group::Black,
             },
             Piece {
+                id: 4,
                 location: (2, 1),
                 name: "马",
                 group: Group::Black,
             },
             Piece {
+                id: 5,
                 location: (8, 1),
                 name: "马",
                 group: Group::Black,
             },
             Piece {
+                id: 6,
                 location: (2, 3),
                 name: "炮",
                 group: Group::Black,
             },
             Piece {
+                id: 7,
                 location: (8, 3),
                 name: "炮",
                 group: Group::Black,
             },
             Piece {
+                id: 8,
                 location: (3, 1),
                 name: "象",
                 group: Group::Black,
             },
             Piece {
+                id: 9,
                 location: (7, 1),
                 name: "象",
                 group: Group::Black,
             },
             Piece {
+                id: 10,
                 location: (4, 1),
                 name: "士",
                 group: Group::Black,
             },
             Piece {
+                id: 11,
                 location: (6, 1),
                 name: "士",
                 group: Group::Black,
             },
             Piece {
+                id: 12,
                 location: (1, 4),
                 name: "卒",
                 group: Group::Black,
             },
             Piece {
+                id: 13,
                 location: (3, 4),
                 name: "卒",
                 group: Group::Black,
             },
             Piece {
+                id: 14,
                 location: (5, 4),
                 name: "卒",
                 group: Group::Black,
             },
             Piece {
+                id: 15,
                 location: (7, 4),
                 name: "卒",
                 group: Group::Black,
             },
             Piece {
+                id: 16,
                 location: (9, 4),
                 name: "卒",
                 group: Group::Black,
             },
             // -------------------------------
             Piece {
+                id: 17,
                 location: (5, 10),
                 name: "帅",
                 group: Group::Red,
             },
             Piece {
+                id: 18,
                 location: (1, 10),
                 name: "车",
                 group: Group::Red,
             },
             Piece {
+                id: 19,
                 location: (9, 10),
                 name: "车",
                 group: Group::Red,
             },
             Piece {
+                id: 10,
                 location: (2, 10),
                 name: "马",
                 group: Group::Red,
             },
             Piece {
+                id: 21,
                 location: (8, 10),
                 name: "马",
                 group: Group::Red,
             },
             Piece {
+                id: 22,
                 location: (2, 8),
                 name: "炮",
                 group: Group::Red,
             },
             Piece {
+                id: 23,
                 location: (8, 8),
                 name: "炮",
                 group: Group::Red,
             },
             Piece {
+                id: 24,
                 location: (3, 10),
                 name: "相",
                 group: Group::Red,
             },
             Piece {
+                id: 25,
                 location: (7, 10),
                 name: "相",
                 group: Group::Red,
             },
             Piece {
+                id: 26,
                 location: (4, 10),
                 name: "仕",
                 group: Group::Red,
             },
             Piece {
+                id: 27,
                 location: (6, 10),
                 name: "仕",
                 group: Group::Red,
             },
             Piece {
+                id: 28,
                 location: (1, 7),
                 name: "兵",
                 group: Group::Red,
             },
             Piece {
+                id: 29,
                 location: (3, 7),
                 name: "兵",
                 group: Group::Red,
             },
             Piece {
+                id: 30,
                 location: (5, 7),
                 name: "兵",
                 group: Group::Red,
             },
             Piece {
+                id: 31,
                 location: (7, 7),
                 name: "兵",
                 group: Group::Red,
             },
             Piece {
+                id: 32,
                 location: (9, 7),
                 name: "兵",
                 group: Group::Red,
