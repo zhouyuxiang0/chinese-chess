@@ -1,11 +1,12 @@
 use stylist::yew::{styled_component, Global};
 use yew::prelude::*;
 mod chess_game;
-mod chess_piece;
 mod chessboard;
-mod chessplaceholder;
 use chessboard::Chessboard;
+use yew::ContextProvider;
 use yew_router::prelude::*;
+
+use crate::chess_game::ChessGame;
 
 #[derive(Clone, Routable, PartialEq)]
 enum Route {
@@ -25,16 +26,19 @@ fn switch(routes: &Route) -> Html {
 
 #[styled_component(App)]
 pub fn app() -> Html {
+    let ctx = use_state(|| ChessGame::get());
     html! {
-        <BrowserRouter>
-            <Global css="font-family:楷体;" />
-            <nav></nav>
-            <main>
-                <Switch<Route> render={Switch::render(switch)} />
-            </main>
-            <footer>
-            </footer>
-        </BrowserRouter>
+        <ContextProvider<ChessGame> context={(*ctx).clone()}>
+            <BrowserRouter>
+                <Global css="font-family:楷体;" />
+                <nav></nav>
+                <main>
+                    <Switch<Route> render={Switch::render(switch)} />
+                </main>
+                <footer>
+                </footer>
+            </BrowserRouter>
+        </ContextProvider<ChessGame>>
     }
 }
 

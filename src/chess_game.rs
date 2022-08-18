@@ -1,7 +1,7 @@
 use std::sync::Once;
 use yew::prelude::*;
 
-#[derive(Clone, PartialEq)]
+#[derive(Clone, PartialEq, Debug)]
 pub struct ChessGame {
     pub chess_map: Vec<(i32, i32)>,
     pub pieces: Vec<Piece>,
@@ -9,13 +9,13 @@ pub struct ChessGame {
     pub current_round: Group,
 }
 
-#[derive(Clone, PartialEq, Copy)]
+#[derive(Clone, PartialEq, Copy, Debug)]
 pub enum Group {
     Red,
     Black,
 }
 
-#[derive(Clone, PartialEq, Copy)]
+#[derive(Clone, PartialEq, Copy, Debug)]
 pub struct Piece {
     pub id: usize,
     pub location: (i32, i32),
