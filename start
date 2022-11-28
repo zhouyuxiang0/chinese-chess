@@ -1,0 +1,3 @@
+cargo build --target wasm32-unknown-unknown
+wasm-bindgen --out-dir static --target web target/wasm32-unknown-unknown/debug/chinese-chess.wasm
+basic-http-server static
