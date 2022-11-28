@@ -9,3 +9,6 @@ cargo run --target wasm32-unknown-unknown
 cargo watch -cx "run --release --target wasm32-unknown-unknown"
 
 // https://johanhelsing.studio/posts/extreme-bevy
+// https://github.com/johanhelsing/extreme_bevy
+
+cargo install matchbox_server

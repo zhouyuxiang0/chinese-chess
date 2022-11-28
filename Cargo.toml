@@ -7,6 +7,9 @@ edition = "2021"
 
 [dependencies]
 bevy = { version = "0.9.0" }
+ggrs = "0.9"
+bevy_ggrs = { version = "0.10", features = ["wasm-bindgen"] }
+matchbox_socket = { version = "0.4", features = ["ggrs-socket"] }
 
 
 # Enable a small amount of optimization in debug mode
