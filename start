@@ -1,3 +1,11 @@
 cargo build --target wasm32-unknown-unknown
 wasm-bindgen --out-dir static --target web target/wasm32-unknown-unknown/debug/chinese-chess.wasm
 basic-http-server static
+
+cargo install wasm-server-runner
+
+cargo run --target wasm32-unknown-unknown
+
+cargo watch -cx "run --release --target wasm32-unknown-unknown"
+
+// https://johanhelsing.studio/posts/extreme-bevy
