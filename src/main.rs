@@ -412,6 +412,6 @@ fn play_collision_sound(
     if !collision_events.is_empty() {
         // This prevents events staying active on the next frame.
         collision_events.clear();
-        audio.play(sound.0.clone());
+        // audio.play(sound.0.clone());
     }
 }
